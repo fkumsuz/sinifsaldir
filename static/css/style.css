@@ -1,0 +1,52 @@
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; /* Light gray background color */
+}
+
+/* Style the header */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Style the image container */
+#imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+/* Style the image */
+#image {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ccc; /* Add a border around the image */
+}
+
+/* Style the next button */
+#nextButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Blue button background color */
+    color: #fff; /* White button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Change button background color on hover */
+#nextButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

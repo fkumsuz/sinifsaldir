@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #imageContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #image {
+            max-width: 700px;
+            max-height: 700px;
+        }
+        .buttonContainer {
+            display: flex;
+            margin-top: 70px;
+        }
+        .buttonContainer button {
+            margin: 0 30px;
+            padding: 40px 60px; /* Adjust padding for larger buttons */
+            font-size: 24px; /* Adjust font size */
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ image_name }}</h1>
+    <div id="imageContainer">
+        <img id="image" src="{{ current_image }}" alt="Image">
+    </div>
+    <div class="buttonContainer">
+        <button id="prevButton">Hayır</button>
+        <button id="nextButton">Evet</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const image = document.getElementById('image');
+            const nextButton = document.getElementById('nextButton');
+            const prevButton = document.getElementById('prevButton');
+            let currentIndex = 0;
+            let imageFiles = {{ image_files | tojson }};
+            let imageNames = {{ image_names | tojson }};
+
+            // Function to load the next image
+            function loadNextImage() {
+                currentIndex = (currentIndex + 1) % imageFiles.length;
+                const imageUrl = imageFiles[currentIndex];
+                const imageName = imageNames[currentIndex];
+                image.src = imageUrl;
+                document.querySelector('h1').innerText = imageName;
+            }
+
+            // Load the first image when the page loads
+            loadNextImage();
+
+            // Add event listener to the next button
+            nextButton.addEventListener('click', loadNextImage);
+
+            // Add event listener to the previous button
+            prevButton.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+                const imageUrl = imageFiles[currentIndex];
+                const imageName = imageNames[currentIndex];
+                image.src = imageUrl;
+                document.querySelector('h1').innerText = imageName;
+            });
+        });
+    </script>
+</body>
+</html>
