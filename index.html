@@ -6,6 +6,8 @@
     <title>Image Viewer</title>
     <style>
         body {
+            background-color: {{ background_color }};
+            color: {{ text_color }};
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -27,17 +29,18 @@
             margin-top: 70px;
         }
         .buttonContainer button {
-            margin: 0 30px;
-            padding: 40px 60px; /* Adjust padding for larger buttons */
-            font-size: 24px; /* Adjust font size */
+            margin: 0 70px;
+            padding: 40px 40px; /* Adjust padding for larger buttons */
+            font-size: 34px; /* Adjust font size */
         }
     </style>
 </head>
 <body>
-    <h1>{{ image_names }}</h1>
+    <h1>{{ image_name }}</h1>
     <div id="imageContainer">
         <img id="image" src="{{ current_image }}" alt="Image">
     </div>
+    <h1>Sınıfsaldır</h1>
     <div class="buttonContainer">
         <button id="prevButton">Hayır</button>
         <button id="nextButton">Evet</button>
@@ -58,7 +61,7 @@
                 const imageUrl = imageFiles[currentIndex];
                 const imageName = imageNames[currentIndex];
                 image.src = imageUrl;
-                document.querySelector('h1').innerText = imageName;
+                document.querySelector('h1').innerText = imageName; 
             }
 
             // Load the first image when the page loads
@@ -69,7 +72,7 @@
 
             // Add event listener to the previous button
             prevButton.addEventListener('click', function() {
-                currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+                currentIndex = (currentIndex + 1 + imageFiles.length) % imageFiles.length;
                 const imageUrl = imageFiles[currentIndex];
                 const imageName = imageNames[currentIndex];
                 image.src = imageUrl;
